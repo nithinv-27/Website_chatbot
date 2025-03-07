@@ -97,6 +97,10 @@ async function don(input){
         new_div.appendChild(a);
         card_content.appendChild(new_div);
         new_div.scrollIntoView({behavior: "smooth"});
+        a.addEventListener("click", (event)=>{
+            event.preventDefault();
+            window.open(a.href, '');
+        })
 
     } else{
         my_div.scrollIntoView({behavior: "smooth"});
