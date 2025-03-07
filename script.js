@@ -81,8 +81,9 @@ async function don(input){
         body: formData
     });
     const res_data = await res.json();
+    console.log(res_data);
     
-    my_p.textContent = res_data.response;
+    my_p.textContent = res_data.content;
     my_div.appendChild(my_p);
     loading.style.display = "none";
     card_content.appendChild(my_div);

@@ -2,9 +2,20 @@ from fastapi import FastAPI, Form
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Annotated
-from model import classify_intent, generate_response, intents, BASE_URL
+from contextlib import asynccontextmanager
+from model import generate_response
 
-app = FastAPI()
+ml_models = {}
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Load the ML model
+    ml_models["llm"] = generate_response
+    yield
+    # Clean up the ML models and release the resources
+    ml_models.clear()
+
+app = FastAPI(lifespan=lifespan)
 
 class UserQuery(BaseModel):
     query:str
@@ -31,18 +42,5 @@ def home():
 @app.post("/chatbot")
 async def chatbot_response(request: Annotated[UserQuery, Form()]):
     user_query = request.query
-
-    # Classify intent
-    intent = classify_intent(user_query)
-
-    if intent:
-        # Generate AI response
-        ai_response = generate_response(intent)
-        response_data = {
-            "intent": intent,
-            "response": ai_response,
-            "link": intents[intent]["link"]
-        }
-        return response_data
-    else:
-        return {"intent": "None", "response": "I'm not sure how to help with that."}
+    res = ml_models["llm"](user_query=user_query)
+    return res
