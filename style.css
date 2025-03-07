@@ -341,8 +341,12 @@
 .user-chat, .bot-chat {
     padding: 10px;
     max-width: 80%;
+    /* text-align: left; */
     border-radius: 8px;
     margin: 5px 0;
+    word-wrap: break-word;  /* Ensures long words wrap */
+    overflow-wrap: break-word; /* Alternative for better browser support */
+    white-space: normal; /* Prevents text from staying in one line */
 }
 
 .user-chat {
@@ -354,12 +358,13 @@
     padding: 0;
     margin: 0;
     font-family: "Roboto", sans-serif;
-
+    
 }
 
 .bot-chat {
     background-color: #f0f0f0;
     align-self: flex-start;
+    
 }
 
 .bot-chat p{
@@ -367,6 +372,7 @@
     font-weight: 300;
     padding: 0;
     margin: 0;
+    
 }
 
 .bot-link{
@@ -381,3 +387,40 @@
     font-family: "Roboto", sans-serif;
 
 }
+
+.loading{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    width: 20%;
+    border-radius: 1em;
+}
+
+.circle{
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 5px;
+    animation: fadeAnimation 1.5s infinite ease-in-out;
+}
+
+  @keyframes fadeAnimation {
+    0% {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+    25% {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    50% {
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+    75%{
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+    100%{
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
