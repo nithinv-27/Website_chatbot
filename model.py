@@ -244,7 +244,10 @@ def generate_response(user_query, intents=intents, BASE_URL=BASE_URL):
     # Check for greetings or goodbyes using semantic search
     greeting_or_goodbye = detect_greeting_or_goodbye(user_query)
     if greeting_or_goodbye:
-        return greeting_or_goodbye  # Return friendly greeting or goodbye
+        response_data = {
+        "content": greeting_or_goodbye,
+    }
+        return response_data # Return friendly greeting or goodbye
 
     # Classify intent using semantic search
     intent = classify_intent(user_query, intents)
