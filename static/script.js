@@ -29,7 +29,7 @@ query_form.addEventListener("submit", async (event)=>{
     p.textContent = input_val;
     div.appendChild(p);
     card_content.appendChild(div);
-    await don(input_val);
+    await sendQueryToChatbot(input_val);
     
     
 });
@@ -43,11 +43,11 @@ btns.forEach(button =>{
         p.textContent = event.target.textContent;
         div.appendChild(p);
         card_content.appendChild(div);
-        don(event.target.textContent);
+        sendQueryToChatbot(event.target.textContent);
     })
 })
 
-async function don(input){
+async function sendQueryToChatbot(input){
     const formData = new FormData();
 
     card_content.appendChild(loading);
@@ -64,9 +64,12 @@ async function don(input){
     btns.forEach(btn=>{
         btn.disabled = true;
     })
-    const res = await fetch("http://127.0.0.1:8000/chatbot", {
+    const res = await fetch("http://localhost:8000/api/chatbot", {
         method: "POST",
-        body: formData
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ query: input })
     });
     const res_data = await res.json();
     console.log(res_data);

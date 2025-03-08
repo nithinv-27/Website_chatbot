@@ -4,12 +4,13 @@ logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 from fastapi import FastAPI, Form
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from typing import Annotated
 from contextlib import asynccontextmanager
 from model import generate_response
 from fastapi.staticfiles import StaticFiles
+from routes import router, ml_models
 
-ml_models = {}
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -21,16 +22,11 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
-# Serve frontend (Vite build) as static files
-app.mount("/", StaticFiles(directory="static/dist", html=True), name="static")
-
-class UserQuery(BaseModel):
-    query:str
-
 origins = [
     "http://localhost.tiangolo.com",
     "https://localhost.tiangolo.com",
     "http://127.0.0.1:5500",
+    "http://0.0.0.0:8000",
     "http://localhost:8080"
 ]
 
@@ -39,20 +35,19 @@ app.add_middleware(
     allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"],
+    allow_headers=["*"]
 )
 
+
+# Serve frontend at "/"
 @app.get("/")
-def home():
-    return {"succ":"ess"}
+async def serve_frontend():
+    return {"bru": "uh"}
+    return FileResponse("static/dist/index.html")
 
-@app.post("/chatbot")
-async def chatbot_response(request: Annotated[UserQuery, Form()]):
-    user_query = request.query
-    res = ml_models["llm"](user_query=user_query)
-    return res
+app.mount("/static", StaticFiles(directory="static", html=True), name="static")
 
+app.include_router(router, prefix="/api")
 
 if __name__ == "__main__":
-    logging.debug('Starting backend......')
     uvicorn.run(app=app, host="0.0.0.0", port=8000)
