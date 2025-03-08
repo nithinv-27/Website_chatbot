@@ -1,4 +1,4 @@
-# ubayog_chatbot
+# Website AI assistant
 
 ## Installation
 
