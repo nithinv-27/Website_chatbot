@@ -7,6 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import Annotated
 from contextlib import asynccontextmanager
 from model import generate_response
+from fastapi.staticfiles import StaticFiles
 
 ml_models = {}
 
@@ -19,6 +20,9 @@ async def lifespan(app: FastAPI):
     ml_models.clear()
 
 app = FastAPI(lifespan=lifespan)
+
+# Serve frontend (Vite build) as static files
+app.mount("/", StaticFiles(directory="static/dist", html=True), name="static")
 
 class UserQuery(BaseModel):
     query:str
