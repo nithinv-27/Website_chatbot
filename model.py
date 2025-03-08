@@ -27,12 +27,14 @@ intents = {
             "How to advertise my product?",
             "List an item in the marketplace"
         ],
-        "response": "To list an item for sale, visit our <a href='{BASE_URL}/sell'>listing page</a>. Fill in the item details and submit. You can also manage your existing listings from your account.",
-        "link": "{BASE_URL}/sell",
+        "response": "To list an item for sale, visit our <a href='{BASE_URL}/monetize'>listing page</a>. Select a category. Fill in the item details and submit. You can also manage your existing listings from your account.",
+        "link": "{BASE_URL}/monetize",
         "related_keywords": ["sell product", "post a listing", "marketplace", "advertise item", "list my assets"]
     },
     "Searching for Rentals": {
         "examples": [
+            "Find an item",
+            "Find a resource",
             "Find me a rental",
             "I need to rent equipment",
             "Look for available properties",
@@ -45,6 +47,22 @@ intents = {
         "response": "You can explore rental listings <a href='{BASE_URL}/rentals'>here</a>. Use filters to narrow down your search based on category, location, and price.",
         "link": "{BASE_URL}/rentals",
         "related_keywords": ["lease", "renting", "short-term rental", "rental marketplace", "rental search"]
+    },
+    "FAQs": {
+        "examples": [
+            "FAQs",
+            "Where can I find FAQs?",
+            "Do you have a help section?",
+            "Common questions about this platform",
+            "Where can I get support?",
+            "I need answers to common issues",
+            "Help with using the website",
+            "Frequently asked questions",
+            "Support center"
+        ],
+        "response": "You can find answers to common questions on our <a href='{BASE_URL}/faq'>FAQ page</a>. If you need further assistance, visit our <a href='{BASE_URL}/support'>support center</a>.",
+        "link": "{BASE_URL}/faq",
+        "related_keywords": ["help", "support", "customer service", "troubleshooting", "common questions"]
     },
     "Exploring Services": {
         "examples": [
@@ -162,8 +180,8 @@ intents = {
             "Where can I find help?",
             "Support team contact"
         ],
-        "response": "For any assistance, visit our <a href='{BASE_URL}/help'>Help Center</a>. You can also contact customer support for further inquiries.",
-        "link": "{BASE_URL}/help",
+        "response": "For any assistance, visit our <a href='{BASE_URL}/contact'>Help Center</a>. You can also contact customer support for further inquiries.",
+        "link": "{BASE_URL}/contact",
         "related_keywords": ["customer service", "support request", "site help", "FAQ section", "technical support"]
     }
 }
@@ -259,10 +277,6 @@ def generate_response(user_query, intents=intents, BASE_URL=BASE_URL):
     }
         return response_data
 
-    # Fetch predefined response and link
-    # intent_data = intents.get(intent, {})
-    # predefined_response = intent_data.get("response", "I'm not sure how to help with that.")
-
     # Initialize LLM
     llm = ChatGroq(model="llama3-8b-8192", temperature=0.1)
 
@@ -288,7 +302,8 @@ def generate_response(user_query, intents=intents, BASE_URL=BASE_URL):
     - **Do not start with a greeting.**
     - **Ensure a natural, conversational tone.**
     - **Keep it concise yet engaging.**
-    - **Do not include any links in the response.**
+    - **Mention to follow the link below. Do not include any links in the       response.**
+    - **Do not to generate the same response everytime. Generate a user-friendly, similar, concise response.**
     - **Encourage the user to ask questions if they need help.**
 
     Now, generate the response following these guidelines.
