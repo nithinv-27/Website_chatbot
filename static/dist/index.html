@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=close" />
+    <link rel="stylesheet" href="style.css">
+    <title>Ubayog Chatbot</title>
+</head>
+<body>
+    <div class="container">
+        <div class="heading">
+            <h1>Welcome!</h1>
+        </div>
+        <div class="chat-bot">
+            <button class="chat-btn"><img class="chatbot-img" src="icons/chatbot.png" alt=""></button>
+            <div class="chatbot-card">
+                <div class="card-heading">
+                    <div>
+                        <h3>YOGU</h3>
+                        <p>Your Smart Guide</p>
+                    </div>
+                    <button class="close-chat">
+                        <span class="material-symbols-outlined">
+                            close
+                            </span>
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="card-body-address">
+                        <p>Hi! How can I help you today?</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="btns">
+                            <button>List an Item</button>
+                        </div>
+                        <div class="btns">
+                            <button>Find an Item</button>
+                        </div>
+                        <div class="btns">
+                            <button>Reward Points</button>
+                        </div>
+                        <div class="btns">
+                            <button>FAQs</button>
+                        </div>
+                        <!-- <div class="btns">
+                            <button>Utilization Quiz</button>
+                        </div> -->
+                        <div class="loading">
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <form class="query-form">
+                        <input class="search" type="text" placeholder="Enter query">
+                        <button class="send-query">
+                            <img src="icons/send_24dp_41AA70_FILL0_wght400_GRAD0_opsz24.svg">
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="script.js"></script>
+</body>
+</html>
