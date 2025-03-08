@@ -1,3 +1,6 @@
+import uvicorn
+import logging
+logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 from fastapi import FastAPI, Form
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
@@ -44,3 +47,8 @@ async def chatbot_response(request: Annotated[UserQuery, Form()]):
     user_query = request.query
     res = ml_models["llm"](user_query=user_query)
     return res
+
+
+if __name__ == "__main__":
+    logging.debug('Starting backend......')
+    uvicorn.run(app=app, host="0.0.0.0", port=8000)
