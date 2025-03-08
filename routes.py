@@ -1,7 +1,6 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
-
-ml_models = {}
+from model import generate_response
 
 class UserQuery(BaseModel):
     query: str
@@ -11,5 +10,5 @@ router = APIRouter()
 @router.post("/chatbot")
 async def chatbot_response(request: UserQuery):
     user_query = request.query
-    res = ml_models["llm"](user_query=user_query)
-    return {"content": res}
+    res = generate_response(user_query=user_query)
+    return res
