@@ -22,12 +22,7 @@ query_form.addEventListener("submit", async (event)=>{
     event.preventDefault();
     const input_val = user_input.value;
     user_input.value = "";
-    user_input.style.backgroundColor = "rgba(0,0,0,0.1)";
-    user_input.disabled = true;
-    send_query.disabled = true;
-    btns.forEach(btn=>{
-        btn.disabled = true;
-    })
+    
     let div = document.createElement("div");
     let p = document.createElement("p");
     div.classList.add("user-chat");
@@ -35,22 +30,13 @@ query_form.addEventListener("submit", async (event)=>{
     div.appendChild(p);
     card_content.appendChild(div);
     await don(input_val);
-    user_input.disabled = false;
-    user_input.style.backgroundColor = "white";
-    send_query.disabled = false;
-    btns.forEach(btn=>{
-        btn.disabled = false;
-    })
+    
     
 });
 
 btns.forEach(button =>{
     button.addEventListener("click", (event)=>{
-        // user_input.value = "";
-        user_input.style.backgroundColor = "rgba(0,0,0,0.1)";
-        user_input.disabled = true;
-        send_query.disabled = true;
-        button.disabled = true;
+        user_input.value = "";
         let div = document.createElement("div");
         let p = document.createElement("p");
         div.classList.add("user-chat");
@@ -58,10 +44,6 @@ btns.forEach(button =>{
         div.appendChild(p);
         card_content.appendChild(div);
         don(event.target.textContent);
-        user_input.disabled = false;
-        user_input.style.backgroundColor = "white";
-        send_query.disabled = false;
-        button.disabled = false;
     })
 })
 
@@ -76,13 +58,25 @@ async function don(input){
     let my_p = document.createElement("p");
     my_div.classList.add("bot-chat");
     formData.append("query", input);
+    user_input.style.backgroundColor = "rgba(0,0,0,0.1)";
+    user_input.disabled = true;
+    send_query.disabled = true;
+    btns.forEach(btn=>{
+        btn.disabled = true;
+    })
     const res = await fetch("http://127.0.0.1:8000/chatbot", {
         method: "POST",
         body: formData
     });
     const res_data = await res.json();
     console.log(res_data);
-    
+
+    user_input.disabled = false;
+    user_input.style.backgroundColor = "white";
+    send_query.disabled = false;
+    btns.forEach(btn=>{
+        btn.disabled = false;
+    })
     my_p.textContent = res_data.content;
     my_div.appendChild(my_p);
     loading.style.display = "none";

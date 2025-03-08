@@ -27,7 +27,7 @@ intents = {
             "How to advertise my product?",
             "List an item in the marketplace"
         ],
-        "response": "To list an item for sale, visit our <a href='{BASE_URL}/monetize'>listing page</a>. Select a category. Fill in the item details and submit. You can also manage your existing listings from your account.",
+        "response": "To list an item for sale, visit our <a href='{BASE_URL}/monetize'>listing page</a>. Select a category. Fill in the item details and submit.",
         "link": "{BASE_URL}/monetize",
         "related_keywords": ["sell product", "post a listing", "marketplace", "advertise item", "list my assets"]
     },
@@ -44,8 +44,8 @@ intents = {
             "Available items for rent",
             "Check rental listings"
         ],
-        "response": "You can explore rental listings <a href='{BASE_URL}/rentals'>here</a>. Use filters to narrow down your search based on category, location, and price.",
-        "link": "{BASE_URL}/rentals",
+        "response": "You can explore rental listings <a href='{BASE_URL}'>here</a>. Use filters to narrow down your search based on category, location, and price.",
+        "link": "{BASE_URL}",
         "related_keywords": ["lease", "renting", "short-term rental", "rental marketplace", "rental search"]
     },
     "FAQs": {
