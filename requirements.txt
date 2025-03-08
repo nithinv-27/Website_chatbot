@@ -4,3 +4,4 @@ python-multipart==0.0.20
 langchain-groq==0.2.3
 langchain==0.3.14
 python-dotenv==1.0.1
+sentence-transformers==3.4.1
