@@ -64,7 +64,7 @@ async function sendQueryToChatbot(input){
     btns.forEach(btn=>{
         btn.disabled = true;
     })
-    const res = await fetch("https://websitechatbot-production.up.railway.app/api/chatbot", {
+    const res = await fetch("http://localhost:8000/api/chatbot", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
