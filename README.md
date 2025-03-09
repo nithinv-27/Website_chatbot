@@ -31,6 +31,7 @@
 
     ```
     GROQ_API_KEY=your-groq-api-key
+    BASE_URL=website-base-url
     ```
 
     - Replace `your-groq-api-key` with your Groq API key.
@@ -38,8 +39,15 @@
       
       🔗 [Groq API Keys](https://console.groq.com/keys)  
 
+    - Replace `website-base-url` with your Website's Base Url.
+      
 6. Run the FastAPI backend:
 
     ```bash
     python ./main.py
+    ```
+7. Go to the link below to access the site:
+
+    ```bash
+    http://localhost:8000/static 
     ```
