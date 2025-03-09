@@ -11,8 +11,6 @@ import random
 # Load a sentence transformer model
 embedding_model = SentenceTransformer('all-MiniLM-L6-v2')
 
-# Define website base URL
-BASE_URL = "https://www.ubayog.com"
 
 # Define intents with sample queries and webpage links
 intents = {
@@ -251,13 +249,19 @@ def detect_greeting_or_goodbye(user_query):
 
     return None  # If neither greeting nor goodbye is detected
 
-def generate_response(user_query, intents=intents, BASE_URL=BASE_URL):
+def generate_response(user_query, intents=intents):
     """Generates a response based on greetings, intent classification, and LLM generation."""
     load_dotenv("keys.env")
 
     if "GROQ_API_KEY" not in os.environ:
         print("Missing API Key")
         return "I'm sorry, but I can't generate a response right now."
+    
+    if "BASE_URL" not in os.environ:
+        print("Missing Base Url")
+        return "I'm sorry, but I can't generate a response right now."
+    
+    BASE_URL = os.getenv("BASE_URL")
 
     # Check for greetings or goodbyes using semantic search
     greeting_or_goodbye = detect_greeting_or_goodbye(user_query)
