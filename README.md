@@ -1,4 +1,4 @@
-# Website AI assistant
+# Website-AI-Assistant 
 
 ## Installation
 
