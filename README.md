@@ -34,6 +34,9 @@
     ```
 
     - Replace `your-groq-api-key` with your Groq API key.
+    - You can visit the Groq Console by clicking the link below and create an api key.
+      
+      🔗 [Groq API Keys](https://console.groq.com/keys)  
 
 6. Run the FastAPI backend:
 
