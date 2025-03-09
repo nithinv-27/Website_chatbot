@@ -5,11 +5,10 @@
 ### Prerequisites
 
 - Python 3.x
-- FastAPI and related dependencies
 
 ### Backend Setup
 
-1. Clone the repository:
+1. Clone this repository:
 
    ```bash
    git clone https://github.com/nithinv-27/Website_chatbot.git
@@ -39,7 +38,5 @@
 6. Run the FastAPI backend:
 
     ```bash
-    uvicorn main:app --reload
+    python ./main.py
     ```
-    
-7. Open the `index.html` in your browser or use a simple server like `live-server` to view the application.
